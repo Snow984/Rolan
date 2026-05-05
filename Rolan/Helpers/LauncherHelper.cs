@@ -1,4 +1,3 @@
-
 using Rolan.Models;
 using System;
 using System.Diagnostics;

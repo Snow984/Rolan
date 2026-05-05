@@ -1,15 +1,14 @@
-
-&lt;ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    &lt;SolidColorBrush x:Key="PrimaryBackground" Color="#F5F5F5" /&gt;
-    &lt;SolidColorBrush x:Key="SecondaryBackground" Color="#FFFFFF" /&gt;
-    &lt;SolidColorBrush x:Key="PrimaryText" Color="#333333" /&gt;
-    &lt;SolidColorBrush x:Key="SecondaryText" Color="#666666" /&gt;
-    &lt;SolidColorBrush x:Key="Accent" Color="#0078D4" /&gt;
-    &lt;SolidColorBrush x:Key="AccentHover" Color="#106EBE" /&gt;
-    &lt;SolidColorBrush x:Key="BorderBrush" Color="#E0E0E0" /&gt;
-    &lt;SolidColorBrush x:Key="TabActive" Color="#0078D4" /&gt;
-    &lt;SolidColorBrush x:Key="TabInactive" Color="#E0E0E0" /&gt;
+    <SolidColorBrush x:Key="PrimaryBackground" Color="#F5F5F5" />
+    <SolidColorBrush x:Key="SecondaryBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="PrimaryText" Color="#333333" />
+    <SolidColorBrush x:Key="SecondaryText" Color="#666666" />
+    <SolidColorBrush x:Key="Accent" Color="#0078D4" />
+    <SolidColorBrush x:Key="AccentHover" Color="#106EBE" />
+    <SolidColorBrush x:Key="BorderBrush" Color="#E0E0E0" />
+    <SolidColorBrush x:Key="TabActive" Color="#0078D4" />
+    <SolidColorBrush x:Key="TabInactive" Color="#E0E0E0" />
     
-&lt;/ResourceDictionary&gt;
+</ResourceDictionary>

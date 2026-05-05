@@ -1,4 +1,3 @@
-
 using System;
 using System.Windows;
 using System.Windows.Media.Animation;
@@ -23,8 +22,8 @@ namespace Rolan.Helpers
         {
             if (window == null) return EdgePosition.None;
 
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
 
             double left = window.Left;
             double top = window.Top;
@@ -43,8 +42,8 @@ namespace Rolan.Helpers
         {
             if (window == null || edge == EdgePosition.None) return;
 
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
 
             double targetX = window.Left;
             double targetY = window.Top;
@@ -72,8 +71,8 @@ namespace Rolan.Helpers
         {
             if (window == null || edge == EdgePosition.None) return;
 
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
 
             double targetX = window.Left;
             double targetY = window.Top;
@@ -99,9 +98,9 @@ namespace Rolan.Helpers
 
         public static bool IsMouseNearEdge(EdgePosition edge, double threshold = 10)
         {
-            System.Windows.Point mousePos = System.Windows.Forms.Control.MousePosition;
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            System.Drawing.Point mousePos = System.Windows.Forms.Control.MousePosition;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
 
             switch (edge)
             {

@@ -1,4 +1,3 @@
-
 using Rolan.Helpers;
 using Rolan.Models;
 using System.Windows;
