@@ -18,6 +18,11 @@
 
   &lt;ItemGroup&gt;
     &lt;PackageReference Include="System.Text.Json" Version="8.0.3" /&gt;
+    &lt;FrameworkReference Include="Microsoft.WindowsDesktop.App" /&gt;
+  &lt;/ItemGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;Resource Include="Resources\*" /&gt;
   &lt;/ItemGroup&gt;
 
 &lt;/Project&gt;

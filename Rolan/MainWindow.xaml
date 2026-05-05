@@ -1,0 +1,136 @@
+
+&lt;Window x:Class="Rolan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rolan"
+        mc:Ignorable="d"
+        Title="Rolan" Height="450" Width="300"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" ShowInTaskbar="False"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseLeave="Window_MouseLeave" MouseEnter="Window_MouseEnter"
+        Drop="Window_Drop" DragOver="Window_DragOver"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        Closing="Window_Closing" Loaded="Window_Loaded"&gt;
+    
+    &lt;Grid&gt;
+        &lt;Border Background="{DynamicResource SecondaryBackground}" BorderBrush="{DynamicResource BorderBrush}" 
+                BorderThickness="1" CornerRadius="8" Effect="DropShadowEffect"&gt;
+            
+            &lt;Grid&gt;
+                &lt;Grid.RowDefinitions&gt;
+                    &lt;RowDefinition Height="Auto" /&gt;
+                    &lt;RowDefinition Height="*" /&gt;
+                    &lt;RowDefinition Height="Auto" /&gt;
+                &lt;/Grid.RowDefinitions&gt;
+                
+                &lt;Grid Grid.Row="0" Background="#F0F0F0"&gt;
+                    &lt;TabControl x:Name="TabControl" Margin="0" BorderThickness="0"
+                                SelectionChanged="TabControl_SelectionChanged"
+                                ItemsSource="{Binding Groups}"&gt;
+                        &lt;TabControl.ItemTemplate&gt;
+                            &lt;DataTemplate&gt;
+                                &lt;StackPanel Orientation="Horizontal" Margin="8,4"&gt;
+                                    &lt;Rectangle Width="8" Height="8" Fill="{Binding Color}" 
+                                               CornerRadius="4" Margin="0,0,6,0"/&gt;
+                                    &lt;TextBlock Text="{Binding GroupName}" /&gt;
+                                    &lt;Button x:Name="DeleteTabBtn" Width="16" Height="16" 
+                                            Margin="4,0,0,0" Style="{x:Null}"
+                                            Click="DeleteTabBtn_Click" Tag="{Binding}"&gt;
+                                        &lt;TextBlock Text="×" FontSize="14" Foreground="#999" 
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center"/&gt;
+                                    &lt;/Button&gt;
+                                &lt;/StackPanel&gt;
+                            &lt;/DataTemplate&gt;
+                        &lt;/TabControl.ItemTemplate&gt;
+                        &lt;TabControl.ContentTemplate&gt;
+                            &lt;DataTemplate&gt;
+                                &lt;ScrollViewer x:Name="GroupScrollViewer" Margin="4" 
+                                              VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Auto"&gt;
+                                    &lt;ItemsControl x:Name="ItemsControl" ItemsSource="{Binding Items}"&gt;
+                                        &lt;ItemsControl.ItemsPanel&gt;
+                                            &lt;ItemsPanelTemplate&gt;
+                                                &lt;WrapPanel IsItemsHost="True" Orientation="Vertical"
+                                                         MaxWidth="{Binding ActualWidth, ElementName=GroupScrollViewer}" /&gt;
+                                            &lt;/ItemsPanelTemplate&gt;
+                                        &lt;/ItemsControl.ItemsPanel&gt;
+                                        &lt;ItemsControl.ItemTemplate&gt;
+                                            &lt;DataTemplate&gt;
+                                                &lt;Border x:Name="ItemBorder" Margin="4" Padding="4"
+                                                        Width="72" Height="72"
+                                                        Background="Transparent"
+                                                        MouseLeftButtonDown="ItemBorder_MouseLeftButtonDown"
+                                                        MouseRightButtonDown="ItemBorder_MouseRightButtonDown"
+                                                        Tag="{Binding}"&gt;
+                                                    &lt;StackPanel Orientation="Vertical" HorizontalAlignment="Center"&gt;
+                                                        &lt;Image x:Name="ItemIcon" Width="48" Height="48" Stretch="Uniform" 
+                                                               Source="{Binding IconPath, Converter={local:IconConverter}}"/&gt;
+                                                        &lt;TextBlock Text="{Binding Name}" FontSize="10" 
+                                                                   TextWrapping="Wrap" TextAlignment="Center"
+                                                                   MaxWidth="64" Foreground="{DynamicResource PrimaryText}"/&gt;
+                                                    &lt;/StackPanel&gt;
+                                                &lt;/Border&gt;
+                                                &lt;DataTemplate.Triggers&gt;
+                                                    &lt;Trigger Property="IsMouseOver" Value="True"&gt;
+                                                        &lt;Setter TargetName="ItemBorder" Property="Background" Value="#E0E0E0"/&gt;
+                                                    &lt;/Trigger&gt;
+                                                &lt;/DataTemplate.Triggers&gt;
+                                            &lt;/DataTemplate&gt;
+                                        &lt;/ItemsControl.ItemTemplate&gt;
+                                    &lt;/ItemsControl&gt;
+                                &lt;/ScrollViewer&gt;
+                            &lt;/DataTemplate&gt;
+                        &lt;/TabControl.ContentTemplate&gt;
+                    &lt;/TabControl&gt;
+                    
+                    &lt;Button x:Name="AddTabBtn" Width="24" Height="24" Margin="4"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            Click="AddTabBtn_Click"&gt;
+                        &lt;TextBlock Text="+" FontSize="18" Foreground="#0078D4"/&gt;
+                    &lt;/Button&gt;
+                &lt;/Grid&gt;
+                
+                &lt;Grid Grid.Row="1"&gt;
+                    &lt;TextBox x:Name="SearchBox" Grid.Row="1" Margin="8,4" 
+                             Style="{DynamicResource ModernTextBox}"
+                             Visibility="Collapsed"
+                             TextChanged="SearchBox_TextChanged"
+                             PlaceholderText="搜索..." /&gt;
+                &lt;/Grid&gt;
+                
+                &lt;Grid Grid.Row="2" Background="#F0F0F0" Height="32"&gt;
+                    &lt;StackPanel Orientation="Horizontal" Margin="8" VerticalAlignment="Center"&gt;
+                        &lt;Button x:Name="LayoutBtn" Width="24" Height="24" Margin="0,0,4,0"
+                                Click="LayoutBtn_Click" ToolTip="切换布局"&gt;
+                            &lt;TextBlock Text="⟳" FontSize="14"/&gt;
+                        &lt;/Button&gt;
+                        &lt;Button x:Name="IconSizeBtn" Width="24" Height="24" Margin="0,0,4,0"
+                                Click="IconSizeBtn_Click" ToolTip="切换图标大小"&gt;
+                            &lt;TextBlock Text="⊡" FontSize="14"/&gt;
+                        &lt;/Button&gt;
+                        &lt;Button x:Name="SettingsBtn" Width="24" Height="24" Margin="0,0,4,0"
+                                Click="SettingsBtn_Click" ToolTip="设置"&gt;
+                            &lt;TextBlock Text="⚙" FontSize="14"/&gt;
+                        &lt;/Button&gt;
+                        &lt;Button x:Name="CloseBtn" Width="24" Height="24"
+                                Click="CloseBtn_Click" ToolTip="关闭"&gt;
+                            &lt;TextBlock Text="×" FontSize="16"/&gt;
+                        &lt;/Button&gt;
+                    &lt;/StackPanel&gt;
+                &lt;/Grid&gt;
+            &lt;/Grid&gt;
+        &lt;/Border&gt;
+    &lt;/Grid&gt;
+    
+    &lt;ContextMenu x:Key="ItemContextMenu"&gt;
+        &lt;MenuItem Header="打开" Click="MenuItem_Open"/&gt;
+        &lt;MenuItem Header="以管理员身份运行" Click="MenuItem_RunAsAdmin"/&gt;
+        &lt;MenuItem Header="打开文件所在位置" Click="MenuItem_OpenLocation"/&gt;
+        &lt;Separator/&gt;
+        &lt;MenuItem Header="复制" Click="MenuItem_Copy"/&gt;
+        &lt;MenuItem Header="删除" Click="MenuItem_Delete"/&gt;
+    &lt;/ContextMenu&gt;
+&lt;/Window&gt;
