@@ -1,8 +1,6 @@
-
 using Rolan.Helpers;
 using Rolan.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,34 +17,17 @@ namespace Rolan
         private bool _isSearchMode = false;
         private string _searchText = string.Empty;
         private LauncherItem? _contextMenuTarget;
-        private NotifyIcon? _notifyIcon;
 
         public MainWindow()
         {
             InitializeComponent();
             LoadData();
-            SetupNotifyIcon();
         }
 
         private void LoadData()
         {
             _appData = DataStorage.LoadData();
             DataContext = _appData;
-        }
-
-        private void SetupNotifyIcon()
-        {
-            _notifyIcon = new NotifyIcon();
-            _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(
-                System.Reflection.Assembly.GetExecutingAssembly().Location) ?? 
-                System.Drawing.SystemIcons.Application;
-            _notifyIcon.Visible = true;
-            _notifyIcon.DoubleClick += (s, e) => ToggleWindowVisibility();
-            
-            var contextMenu = new System.Windows.Forms.ContextMenuStrip();
-            contextMenu.Items.Add("显示", null, (s, e) => ShowWindow());
-            contextMenu.Items.Add("退出", null, (s, e) => Application.Current.Shutdown());
-            _notifyIcon.ContextMenuStrip = contextMenu;
         }
 
         private void ToggleWindowVisibility()

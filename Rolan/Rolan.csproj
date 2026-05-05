@@ -1,28 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
 
-&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <AssemblyName>Rolan</AssemblyName>
+    <RootNamespace>Rolan</RootNamespace>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
 
-  &lt;PropertyGroup&gt;
-    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
-    &lt;TargetFramework&gt;net8.0-windows&lt;/TargetFramework&gt;
-    &lt;Nullable&gt;enable&lt;/Nullable&gt;
-    &lt;UseWPF&gt;true&lt;/UseWPF&gt;
-    &lt;ApplicationIcon&gt;app.ico&lt;/ApplicationIcon&gt;
-    &lt;AssemblyName&gt;Rolan&lt;/AssemblyName&gt;
-    &lt;RootNamespace&gt;Rolan&lt;/RootNamespace&gt;
-    &lt;PublishSingleFile&gt;true&lt;/PublishSingleFile&gt;
-    &lt;PublishReadyToRun&gt;true&lt;/PublishReadyToRun&gt;
-    &lt;SelfContained&gt;true&lt;/SelfContained&gt;
-    &lt;RuntimeIdentifier&gt;win-x64&lt;/RuntimeIdentifier&gt;
-    &lt;IncludeNativeLibrariesForSelfExtract&gt;true&lt;/IncludeNativeLibrariesForSelfExtract&gt;
-  &lt;/PropertyGroup&gt;
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
+  </ItemGroup>
 
-  &lt;ItemGroup&gt;
-    &lt;PackageReference Include="System.Text.Json" Version="8.0.3" /&gt;
-    &lt;FrameworkReference Include="Microsoft.WindowsDesktop.App" /&gt;
-  &lt;/ItemGroup&gt;
-
-  &lt;ItemGroup&gt;
-    &lt;Resource Include="Resources\*" /&gt;
-  &lt;/ItemGroup&gt;
-
-&lt;/Project&gt;
+</Project>
