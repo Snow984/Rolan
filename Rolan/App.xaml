@@ -1,0 +1,14 @@
+
+&lt;Application x:Class="Rolan.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml"&gt;
+    &lt;Application.Resources&gt;
+        &lt;ResourceDictionary&gt;
+            &lt;ResourceDictionary.MergedDictionaries&gt;
+                &lt;ResourceDictionary Source="Styles/Colors.xaml" /&gt;
+                &lt;ResourceDictionary Source="Styles/Controls.xaml" /&gt;
+            &lt;/ResourceDictionary.MergedDictionaries&gt;
+        &lt;/ResourceDictionary&gt;
+    &lt;/Application.Resources&gt;
+&lt;/Application&gt;

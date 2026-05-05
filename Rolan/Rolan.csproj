@@ -1,0 +1,23 @@
+
+&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net8.0-windows&lt;/TargetFramework&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;UseWPF&gt;true&lt;/UseWPF&gt;
+    &lt;ApplicationIcon&gt;app.ico&lt;/ApplicationIcon&gt;
+    &lt;AssemblyName&gt;Rolan&lt;/AssemblyName&gt;
+    &lt;RootNamespace&gt;Rolan&lt;/RootNamespace&gt;
+    &lt;PublishSingleFile&gt;true&lt;/PublishSingleFile&gt;
+    &lt;PublishReadyToRun&gt;true&lt;/PublishReadyToRun&gt;
+    &lt;SelfContained&gt;true&lt;/SelfContained&gt;
+    &lt;RuntimeIdentifier&gt;win-x64&lt;/RuntimeIdentifier&gt;
+    &lt;IncludeNativeLibrariesForSelfExtract&gt;true&lt;/IncludeNativeLibrariesForSelfExtract&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="System.Text.Json" Version="8.0.3" /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
