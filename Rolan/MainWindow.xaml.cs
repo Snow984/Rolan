@@ -20,14 +20,34 @@ namespace Rolan
 
         public MainWindow()
         {
-            InitializeComponent();
-            LoadData();
+            try
+            {
+                InitializeComponent();
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"初始化窗口失败:\n\n" +
+                    $"错误信息: {ex.Message}\n\n" +
+                    $"堆栈跟踪: {ex.StackTrace}",
+                    "错误",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+            }
         }
 
         private void LoadData()
         {
-            _appData = DataStorage.LoadData();
-            DataContext = _appData;
+            try
+            {
+                _appData = DataStorage.LoadData();
+                DataContext = _appData;
+            }
+            catch
+            {
+                _appData = new AppData();
+                DataContext = _appData;
+            }
         }
 
         private void ToggleWindowVisibility()
@@ -48,8 +68,14 @@ namespace Rolan
             Activate();
             if (_currentEdgePosition != EdgePosition.None)
             {
-                EdgeSnapHelper.ShowFromEdge(this, _currentEdgePosition);
-                _isAutoHiding = false;
+                try
+                {
+                    EdgeSnapHelper.ShowFromEdge(this, _currentEdgePosition);
+                    _isAutoHiding = false;
+                }
+                catch
+                {
+                }
             }
         }
 
@@ -57,8 +83,15 @@ namespace Rolan
         {
             if (_currentEdgePosition != EdgePosition.None)
             {
-                EdgeSnapHelper.SnapToEdge(this, _currentEdgePosition);
-                _isAutoHiding = true;
+                try
+                {
+                    EdgeSnapHelper.SnapToEdge(this, _currentEdgePosition);
+                    _isAutoHiding = true;
+                }
+                catch
+                {
+                    Visibility = Visibility.Hidden;
+                }
             }
             else
             {
@@ -68,8 +101,14 @@ namespace Rolan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            HotkeyHelper.HotkeyPressed += HotkeyHelper_HotkeyPressed;
-            HotkeyHelper.RegisterHotkey(this, _appData.Settings.HotKey);
+            try
+            {
+                HotkeyHelper.HotkeyPressed += HotkeyHelper_HotkeyPressed;
+                HotkeyHelper.RegisterHotkey(this, _appData.Settings.HotKey);
+            }
+            catch
+            {
+            }
             
             UpdateTransparency();
             UpdateLayout();

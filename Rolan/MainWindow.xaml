@@ -14,6 +14,17 @@
         PreviewKeyDown="Window_PreviewKeyDown"
         Closing="Window_Closing" Loaded="Window_Loaded">
     
+    <Window.Resources>
+        <ContextMenu x:Key="ItemContextMenu">
+            <MenuItem Header="打开" Click="MenuItem_Open"/>
+            <MenuItem Header="以管理员身份运行" Click="MenuItem_RunAsAdmin"/>
+            <MenuItem Header="打开文件所在位置" Click="MenuItem_OpenLocation"/>
+            <Separator/>
+            <MenuItem Header="复制" Click="MenuItem_Copy"/>
+            <MenuItem Header="删除" Click="MenuItem_Delete"/>
+        </ContextMenu>
+    </Window.Resources>
+    
     <Grid>
         <Border Background="{DynamicResource SecondaryBackground}" BorderBrush="{DynamicResource BorderBrush}" 
                 BorderThickness="1" CornerRadius="8" Effect="DropShadowEffect">
@@ -132,15 +143,4 @@
             </Grid>
         </Border>
     </Grid>
-    
-    <Window.ContextMenu>
-        <ContextMenu x:Key="ItemContextMenu">
-            <MenuItem Header="打开" Click="MenuItem_Open"/>
-            <MenuItem Header="以管理员身份运行" Click="MenuItem_RunAsAdmin"/>
-            <MenuItem Header="打开文件所在位置" Click="MenuItem_OpenLocation"/>
-            <Separator/>
-            <MenuItem Header="复制" Click="MenuItem_Copy"/>
-            <MenuItem Header="删除" Click="MenuItem_Delete"/>
-        </ContextMenu>
-    </Window.ContextMenu>
 </Window>
