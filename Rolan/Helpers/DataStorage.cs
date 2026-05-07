@@ -59,27 +59,6 @@ namespace Rolan.Helpers
                 Settings = new AppSettings()
             };
 
-            data.Groups.Add(new LauncherGroup
-            {
-                GroupName = "办公工具",
-                GroupType = GroupType.Normal,
-                Color = "#0078D4"
-            });
-
-            data.Groups.Add(new LauncherGroup
-            {
-                GroupName = "设计工具",
-                GroupType = GroupType.Normal,
-                Color = "#FF6B6B"
-            });
-
-            data.Groups.Add(new LauncherGroup
-            {
-                GroupName = "常用网址",
-                GroupType = GroupType.Normal,
-                Color = "#4ECDC4"
-            });
-
             return data;
         }
 

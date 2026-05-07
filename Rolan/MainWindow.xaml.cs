@@ -183,6 +183,33 @@ namespace Rolan
             DataStorage.SaveData(_appData);
         }
 
+        private void GroupContent_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.Copy;
+            e.Handled = true;
+        }
+
+        private void GroupContent_Drop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+                return;
+
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files == null || files.Length == 0)
+                return;
+
+            var currentGroup = TabControl.SelectedItem as LauncherGroup;
+            if (currentGroup == null)
+                return;
+
+            foreach (string file in files)
+            {
+                AddFileToGroup(file, currentGroup);
+            }
+
+            DataStorage.SaveData(_appData);
+        }
+
         private void AddFileToGroup(string filePath, LauncherGroup group)
         {
             string extension = Path.GetExtension(filePath).ToLower();
@@ -324,7 +351,7 @@ namespace Rolan
         {
             var button = sender as Button;
             var group = button?.Tag as LauncherGroup;
-            if (group != null && _appData.Groups.Count > 1)
+            if (group != null)
             {
                 _appData.Groups.Remove(group);
                 DataStorage.SaveData(_appData);
@@ -458,6 +485,44 @@ namespace Rolan
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             HideWindow();
+        }
+
+        private void GroupNameTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                textBox.IsReadOnly = false;
+                textBox.SelectAll();
+                textBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void GroupNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                textBox.IsReadOnly = true;
+                DataStorage.SaveData(_appData);
+            }
+        }
+
+        private void GroupNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null && e.Key == Key.Enter)
+            {
+                textBox.IsReadOnly = true;
+                DataStorage.SaveData(_appData);
+                e.Handled = true;
+            }
+            else if (textBox != null && e.Key == Key.Escape)
+            {
+                textBox.IsReadOnly = true;
+                e.Handled = true;
+            }
         }
     }
 }

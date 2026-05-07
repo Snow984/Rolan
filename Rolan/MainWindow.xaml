@@ -34,7 +34,13 @@
                                 <StackPanel Orientation="Horizontal" Margin="8,4">
                                     <Rectangle Width="8" Height="8" Fill="{Binding Color}" 
                                                CornerRadius="4" Margin="0,0,6,0"/>
-                                    <TextBlock Text="{Binding GroupName}" />
+                                    <TextBox x:Name="GroupNameTextBox" 
+                                             Text="{Binding GroupName, UpdateSourceTrigger=LostFocus}"
+                                             BorderThickness="0" Background="Transparent"
+                                             IsReadOnly="True"
+                                             MouseDoubleClick="GroupNameTextBox_MouseDoubleClick"
+                                             LostFocus="GroupNameTextBox_LostFocus"
+                                             KeyDown="GroupNameTextBox_KeyDown"/>
                                     <Button x:Name="DeleteTabBtn" Width="16" Height="16" 
                                             Margin="4,0,0,0" Style="{x:Null}"
                                             Click="DeleteTabBtn_Click" Tag="{Binding}">
@@ -48,7 +54,10 @@
                             <DataTemplate>
                                 <ScrollViewer x:Name="GroupScrollViewer" Margin="4" 
                                               VerticalScrollBarVisibility="Auto"
-                                              HorizontalScrollBarVisibility="Auto">
+                                              HorizontalScrollBarVisibility="Auto"
+                                              AllowDrop="True"
+                                              Drop="GroupContent_Drop"
+                                              DragOver="GroupContent_DragOver">
                                     <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding Items}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
